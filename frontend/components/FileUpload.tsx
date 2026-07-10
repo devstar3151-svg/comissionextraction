@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react';
-import { UploadCloud, FileText, X } from 'lucide-react';
+import { Download, FileText, X } from 'lucide-react';
 
 interface FileUploadProps {
   onFileSelect: (file: File) => void;
@@ -62,8 +62,8 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onFileSelect, disabled }
 
   return (
     <div
-      className={`relative border-2 border-dashed rounded-xl p-8 text-center transition-all duration-200 ease-in-out
-        ${isDragging ? 'border-blue-500 bg-blue-50' : 'border-slate-300 bg-white hover:border-blue-400 hover:bg-slate-50'}
+      className={`relative border border-dashed rounded-xl p-12 text-center transition-all duration-200 ease-in-out bg-white shadow-sm
+        ${isDragging ? 'border-[#a87b4f] bg-[#fdfbf9]' : 'border-[#d1ccc5] hover:border-[#a87b4f]'}
         ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
       `}
       onDragOver={handleDragOver}
@@ -83,8 +83,8 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onFileSelect, disabled }
       {selectedFile ? (
         <div className="flex flex-col items-center justify-center space-y-4">
           <div className="relative">
-            <div className="p-4 bg-blue-100 rounded-full text-blue-600">
-              <FileText size={48} />
+            <div className="p-4 bg-[#f5f4f0] rounded-full text-[#a87b4f]">
+              <FileText size={40} strokeWidth={1.5} />
             </div>
             {!disabled && (
               <button
@@ -97,21 +97,19 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onFileSelect, disabled }
             )}
           </div>
           <div>
-            <p className="text-sm font-medium text-slate-700">{selectedFile.name}</p>
-            <p className="text-xs text-slate-500">{(selectedFile.size / 1024 / 1024).toFixed(2)} MB</p>
+            <p className="text-base font-medium text-[#2d2a26]">{selectedFile.name}</p>
+            <p className="text-sm text-[#8c8985]">{(selectedFile.size / 1024 / 1024).toFixed(2)} MB</p>
           </div>
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center space-y-4">
-          <div className="p-4 bg-slate-100 rounded-full text-slate-500">
-            <UploadCloud size={48} />
-          </div>
+          <Download size={36} strokeWidth={1.5} className="text-[#a87b4f] mb-2" />
           <div>
-            <p className="text-base font-medium text-slate-700">
-              Glissez et déposez votre relevé de commissions ici
+            <p className="text-lg font-medium text-[#2d2a26]">
+              Glissez vos PDF ici, ou <span className="text-[#a87b4f] underline decoration-[#a87b4f]/30 underline-offset-4 hover:decoration-[#a87b4f] transition-colors">parcourez vos fichiers</span>
             </p>
-            <p className="text-sm text-slate-500 mt-1">
-              ou cliquez pour parcourir (PDF uniquement)
+            <p className="text-sm text-[#8c8985] mt-3">
+              Un onglet sera généré par bordereau · PDF uniquement
             </p>
           </div>
         </div>
