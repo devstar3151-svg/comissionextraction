@@ -1,0 +1,4 @@
+{
+  "name": "Commission Extractor AI",
+  "description": "An intelligent agent that extracts and standardizes data from various insurance commission PDF statements using Gemini."
+}
